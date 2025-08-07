@@ -2,13 +2,23 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserIncomeComponent } from './user-income/user-income.component';
 import { type IngresoInversion } from './ingreso-inversion.model';
+import { ResultadosInversionComponent } from './resultados-inversion/resultados-inversion.component';
 @Component({
   selector: 'app-raiz',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, UserIncomeComponent],
+  imports: [HeaderComponent, UserIncomeComponent, ResultadosInversionComponent],
 })
 export class AppComponent {
+  infoResultados?:{
+    anio: number;
+    interes: number;
+    valorFinalAnio: number;
+    inversionAnual: number;
+    interesTotal: number;
+    montoTotalInvertido: number;
+  }[];
+
   alCalcularResultadosInversion(info: IngresoInversion) {
     const { inversionInicial, inversionAnual, rendimientoEsperado, duracion } = info;
 
@@ -30,7 +40,7 @@ export class AppComponent {
         montoTotalInvertido: inversionInicial + inversionAnual * anio,
       });
     }
-    console.log(datosAnuales);
-    return datosAnuales;
+
+    this.infoResultados = datosAnuales
   }
 }
