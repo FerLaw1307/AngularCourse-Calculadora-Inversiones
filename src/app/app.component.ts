@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserIncomeComponent } from './user-income/user-income.component';
-import { type IngresoInversion } from './ingreso-inversion.model';
 import { ResultadosInversionComponent } from './resultados-inversion/resultados-inversion.component';
 @Component({
   selector: 'app-raiz',
@@ -9,38 +8,4 @@ import { ResultadosInversionComponent } from './resultados-inversion/resultados-
   templateUrl: './app.component.html',
   imports: [HeaderComponent, UserIncomeComponent, ResultadosInversionComponent],
 })
-export class AppComponent {
-  infoResultados?:{
-    anio: number;
-    interes: number;
-    valorFinalAnio: number;
-    inversionAnual: number;
-    interesTotal: number;
-    montoTotalInvertido: number;
-  }[];
-
-  alCalcularResultadosInversion(info: IngresoInversion) {
-    const { inversionInicial, inversionAnual, rendimientoEsperado, duracion } = info;
-
-    const datosAnuales = [];
-    let valorInversion = inversionInicial;
-
-    for (let i = 0; i < duracion; i++) {
-      const anio = i + 1;
-      const interesGanadoEnAnio = valorInversion * (rendimientoEsperado / 100);
-      valorInversion += interesGanadoEnAnio + inversionAnual;
-      const interesTotal =
-        valorInversion - inversionAnual * anio - inversionInicial;
-      datosAnuales.push({
-        anio: anio,
-        interes: interesGanadoEnAnio,
-        valorFinalAnio: valorInversion,
-        inversionAnual: inversionAnual,
-        interesTotal: interesTotal,
-        montoTotalInvertido: inversionInicial + inversionAnual * anio,
-      });
-    }
-
-    this.infoResultados = datosAnuales
-  }
-}
+export class AppComponent {}
