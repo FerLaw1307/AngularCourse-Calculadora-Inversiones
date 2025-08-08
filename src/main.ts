@@ -1,5 +1,17 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+//=========================================================================
+/*
+Forma de inicializar una aplicacion angular con Modulo principal
+*/
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { AppModule } from "./app/app.module";
 
-import { AppComponent } from './app/app.component';
+platformBrowserDynamic().bootstrapModule(AppModule);
 
-bootstrapApplication(AppComponent).catch((err) => console.error(err));
+
+//=========================================================================
+/*
+Forma de inicializar una aplicacion angular con StandAlone Components
+*/
+// import { AppComponent } from './app/app.component';
+// bootstrapApplication(AppComponent).catch((err) => console.error(err));
+// import { bootstrapApplication } from '@angular/platform-browser';

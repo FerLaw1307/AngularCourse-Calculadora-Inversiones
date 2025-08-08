@@ -1,4 +1,4 @@
-@if(!resultados){
+@if(!resultados()){
 <p class="centrar">Por favor ingresa valores para calcular tu inversión.</p>
 } @else{
 <table>
@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    @for(resultado of resultados; track resultado.anio){
+    @for(resultado of resultados(); track resultado.anio){
     <tr>
       <td>{{ resultado.anio }}</td>
       <td>{{ resultado.valorFinalAnio | currency }}</td>
